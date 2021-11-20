@@ -27,7 +27,7 @@ function touchstart(event) {
 
   osc.start(auCtx.currentTime)
   gain.gain.setValueAtTime(0.5, auCtx.currentTime)
-  gain.gain.linearRampToValueAtTime(0, auCtx.currentTime + 3)
+  gain.gain.setTargetAtTime(0, auCtx.currentTime, 0.75)
 
   event.currentTarget.classList.add("pressed")
 }
