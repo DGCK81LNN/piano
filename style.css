@@ -1,7 +1,18 @@
 html { height: 100% }
 body { height: 100%; margin: 0 }
-main { width: 100%; height: 80%; overflow-x: auto }
-#svg { width: 3140px; height: 100% }
+main { height: 100% }
+#svg { width: 3140px; height: 80% }
+
+#octave0 { transform: translate(-290px, 10px) }
+#octave1 { transform: translate(130px, 10px) }
+#octave2 { transform: translate(550px, 10px) }
+#octave3 { transform: translate(970px, 10px) }
+#octave4 { transform: translate(1390px, 10px) }
+#octave5 { transform: translate(1810px, 10px) }
+#octave6 { transform: translate(2230px, 10px) }
+#octave7 { transform: translate(2650px, 10px) }
+#octave8 { transform: translate(3070px, 10px) }
+
 .key {
   stroke: black;
   stroke-width: 2px;
@@ -16,11 +27,17 @@ main { width: 100%; height: 80%; overflow-x: auto }
   z-index: 1;
   width: 36px; height: calc(66.67% - 13.33px);
 }
-.key.pressed { fill: gray }
 .key0  { x: 0px   } .key1  { x: 36px  }
 .key2  { x: 60px  } .key3  { x: 108px }
 .key4  { x: 120px } .key5  { x: 180px }
 .key6  { x: 213px } .key7  { x: 240px }
 .key8  { x: 282px } .key9  { x: 300px }
 .key10 { x: 351px } .key11 { x: 360px }
+
+#octave4 .key0 { fill: #ddd }
+.key.pressed { fill: gray !important }
+
 .forceRepaintHack .key { transform: translate(0, 0) }
+
+#desc { position: fixed; left: 10px; bottom: 10px }
+
