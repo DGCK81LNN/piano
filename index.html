@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang=cmn>
+<head>
+  <meta charset=UTF-8>
+  <title>简易钢琴模拟器</title>
+  <meta name=viewport content="width=device-width, initial-scale=1,user-scalable=no"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main>
+<svg id=svg role=application aria-describedby=desc>
+  <g style="transform:translate(-290px, 10px)">
+    <rect data-note=-48 class="key key9" />
+    <rect data-note=-46 class="key key11" />
+    <rect data-note=-47 class="key key10" />
+  </g>
+  <g style="transform:translate(130px, 10px)">
+    <rect data-note=-45 class="key key0" />
+    <rect data-note=-43 class="key key2" />
+    <rect data-note=-41 class="key key4" />
+    <rect data-note=-40 class="key key5" />
+    <rect data-note=-38 class="key key7" />
+    <rect data-note=-36 class="key key9" />
+    <rect data-note=-34 class="key key11" />
+    <rect data-note=-44 class="key key1" />
+    <rect data-note=-42 class="key key3" />
+    <rect data-note=-39 class="key key6" />
+    <rect data-note=-37 class="key key8" />
+    <rect data-note=-35 class="key key10" />
+  </g>
+  <g style="transform:translate(550px, 10px)">
+    <rect data-note=-33 class="key key0" />
+    <rect data-note=-31 class="key key2" />
+    <rect data-note=-29 class="key key4" />
+    <rect data-note=-28 class="key key5" />
+    <rect data-note=-26 class="key key7" />
+    <rect data-note=-24 class="key key9" />
+    <rect data-note=-22 class="key key11" />
+    <rect data-note=-32 class="key key1" />
+    <rect data-note=-30 class="key key3" />
+    <rect data-note=-27 class="key key6" />
+    <rect data-note=-25 class="key key8" />
+    <rect data-note=-23 class="key key10" />
+  </g>
+  <g style="transform:translate(970px, 10px)">
+    <rect data-note=-21 class="key key0" />
+    <rect data-note=-19 class="key key2" />
+    <rect data-note=-17 class="key key4" />
+    <rect data-note=-16 class="key key5" />
+    <rect data-note=-14 class="key key7" />
+    <rect data-note=-12 class="key key9" />
+    <rect data-note=-10 class="key key11" />
+    <rect data-note=-20 class="key key1" />
+    <rect data-note=-18 class="key key3" />
+    <rect data-note=-15 class="key key6" />
+    <rect data-note=-13 class="key key8" />
+    <rect data-note=-11 class="key key10" />
+  </g>
+  <g style="transform:translate(1390px, 10px)">
+    <rect data-note=-9 class="key key0" style="fill: #ddd" />
+    <rect data-note=-7 class="key key2" />
+    <rect data-note=-5 class="key key4" />
+    <rect data-note=-4 class="key key5" />
+    <rect data-note=-2 class="key key7" />
+    <rect data-note=0 class="key key9" />
+    <rect data-note=2 class="key key11" />
+    <rect data-note=-8 class="key key1" />
+    <rect data-note=-6 class="key key3" />
+    <rect data-note=-3 class="key key6" />
+    <rect data-note=-1 class="key key8" />
+    <rect data-note=1 class="key key10" />
+  </g>
+  <g style="transform:translate(1810px, 10px)">
+    <rect data-note=3 class="key key0" />
+    <rect data-note=5 class="key key2" />
+    <rect data-note=7 class="key key4" />
+    <rect data-note=8 class="key key5" />
+    <rect data-note=10 class="key key7" />
+    <rect data-note=12 class="key key9" />
+    <rect data-note=14 class="key key11" />
+    <rect data-note=4 class="key key1" />
+    <rect data-note=6 class="key key3" />
+    <rect data-note=9 class="key key6" />
+    <rect data-note=11 class="key key8" />
+    <rect data-note=13 class="key key10" />
+  </g>
+  <g style="transform:translate(2230px, 10px)">
+    <rect data-note=15 class="key key0" />
+    <rect data-note=17 class="key key2" />
+    <rect data-note=19 class="key key4" />
+    <rect data-note=20 class="key key5" />
+    <rect data-note=22 class="key key7" />
+    <rect data-note=24 class="key key9" />
+    <rect data-note=26 class="key key11" />
+    <rect data-note=16 class="key key1" />
+    <rect data-note=18 class="key key3" />
+    <rect data-note=21 class="key key6" />
+    <rect data-note=23 class="key key8" />
+    <rect data-note=25 class="key key10" />
+  </g>
+  <g style="transform:translate(2650px, 10px)">
+    <rect data-note=27 class="key key0" />
+    <rect data-note=29 class="key key2" />
+    <rect data-note=31 class="key key4" />
+    <rect data-note=32 class="key key5" />
+    <rect data-note=34 class="key key7" />
+    <rect data-note=36 class="key key9" />
+    <rect data-note=38 class="key key11" />
+    <rect data-note=28 class="key key1" />
+    <rect data-note=30 class="key key3" />
+    <rect data-note=33 class="key key6" />
+    <rect data-note=35 class="key key8" />
+    <rect data-note=37 class="key key10" />
+  </g>
+  <g style="transform:translate(3070px, 10px)">
+    <rect data-note=39 class="key key0" />
+  </g>
+</svg>
+<p id=desc>使用触摸屏设备演奏模拟钢琴。</p>
+</main>
+<script src="./script.js"></script>
+</body>
+</html>

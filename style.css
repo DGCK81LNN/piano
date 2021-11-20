@@ -1,0 +1,25 @@
+html { height: 100%; }
+body { height: 100%; margin: 0; }
+#svg { width: 3140px; height: 80% }
+.key {
+  stroke: black;
+  stroke-width: 2px;
+  y: 0;
+}
+.key0, .key2, .key4, .key5, .key7, .key9, .key11 {
+  fill: white;
+  width: 60px; height: calc(100% - 20px);
+}
+.key1, .key3, .key6, .key8, .key10 {
+  fill: black;
+  z-index: 1;
+  width: 36px; height: calc(66.67% - 13.33px);
+}
+.key.pressed { fill: gray }
+.key0  { x: 0px   } .key1  { x: 36px  }
+.key2  { x: 60px  } .key3  { x: 108px }
+.key4  { x: 120px } .key5  { x: 180px }
+.key6  { x: 213px } .key7  { x: 240px }
+.key8  { x: 282px } .key9  { x: 300px }
+.key10 { x: 351px } .key11 { x: 360px }
+.forceRepaintHack .key { transform: translate(0, 0) }
