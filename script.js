@@ -3,52 +3,58 @@
  */
 
 var svg = document.getElementById("svg")
-setTimeout(window.onresize = function () {
+function forceRepaint() {
   svg.classList.toggle("forceRepaintHack")
-}, 0)
+}
+window.addEventListener("resize", forceRepaint)
+setTimeout(forceRepaint, 0)
 
+/** @type {AudioContext} */
 var auCtx = new (window.AudioContext || window.webkitAudioContext)()
-var wav = auCtx.createPeriodicWave(new Float32Array([0, 1, 2, 3, 4]), new Float32Array([0, 0, 0, 0, 0]))
+var wav = auCtx.createPeriodicWave([0, 1, 2, 3, 4], [0, 0, 0, 0, 0])
 /** @type {Map<number, Key>} */
-var keys = new Map() // pressed keys
+var pressedKeys = new Map()
 
 
+/** @param {number} note */
+/** @param {Element} el */
 function startNote(note, el) {
-  if (keys.get(note)) return // alredy pressed
+  if (pressedKeys.has(note)) return
 
-  var key = {}
-  keys.set(note, key)
-  var osc = key.osc = auCtx.createOscillator()
-  var gain = key.gain = auCtx.createGain()
-  key.el = el
+  var oscNode = auCtx.createOscillator()
+  var gainNode = auCtx.createGain()
 
-  osc.setPeriodicWave(wav)
-  osc.detune.value = note * 100
-  osc.connect(key.gain)
-  gain.connect(auCtx.destination)
+  oscNode.setPeriodicWave(wav)
+  oscNode.detune.value = note * 100
+  oscNode.connect(gainNode)
+  gainNode.connect(auCtx.destination)
 
-  osc.start(auCtx.currentTime)
-  gain.gain.setValueAtTime(0.5, auCtx.currentTime)
-  gain.gain.setTargetAtTime(0, auCtx.currentTime, 0.75)
+  oscNode.start(auCtx.currentTime)
+  gainNode.gain.setValueAtTime(0.5, auCtx.currentTime)
+  gainNode.gain.setTargetAtTime(0, auCtx.currentTime, 0.75)
 
   el.classList.add("pressed")
+
+  pressedKeys.set(note, { oscNode, gainNode, el })
 }
 
 function endNote(note) {
-  var key = keys.get(note)
+  var key = pressedKeys.get(note)
   if (!key) return
-  var osc = key.osc
-  var gain = key.gain
+  var oscNode = key.oscNode
+  var gainNode = key.gainNode
 
-  var currentGain = key.gain.gain.value
-  gain.gain.cancelScheduledValues(auCtx.currentTime)
-  gain.gain.setValueAtTime(currentGain, auCtx.currentTime)
-  gain.gain.linearRampToValueAtTime(0, auCtx.currentTime + 0.2)
-  osc.stop(auCtx.currentTime + 0.2)
-
-  keys.delete(note)
+  // Safari 9 doesn't support AudoParam.cancelAndHoldAtTime
+  // using cancelScheduledValues(now) + setValueAtTme(valueBeforeCanceling, now) instead
+  var currentGainValue = key.gainNode.gain.value
+  gainNode.gain.cancelScheduledValues(auCtx.currentTime)
+  gainNode.gain.setValueAtTime(currentGainValue, auCtx.currentTime)
+  gainNode.gain.linearRampToValueAtTime(0, auCtx.currentTime + 0.2)
+  oscNode.stop(auCtx.currentTime + 0.2)
 
   key.el.classList.remove("pressed")
+  
+  pressedKeys.delete(note)
 }
 
 function keyPressed(event) {
@@ -68,7 +74,7 @@ function keyReleased(event) {
 }
 
 function allKeysReleased(_event) {
-  keys.forEach(function (_key, note) {
+  pressedKeys.forEach(function (_key, note) {
     endNote(note)
   })
 }
