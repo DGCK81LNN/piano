@@ -58,6 +58,8 @@ function endNote(note) {
 }
 
 function keyPressed(event) {
+  if (event instanceof MouseEvent && event.button !== 0) return
+
   if (!event.currentTarget.dataset.note) return
   var note = Number(this.dataset.note)
   event.preventDefault()
