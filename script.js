@@ -11,7 +11,7 @@ setTimeout(forceRepaint, 0)
 
 /** @type {AudioContext} */
 var auCtx = new (window.AudioContext || window.webkitAudioContext)()
-var wav = auCtx.createPeriodicWave([0, 1, 2, 3, 4], [0, 0, 0, 0, 0])
+var wav = auCtx.createPeriodicWave(new Float32Array([0, 1, 2, 3, 4]), new Float32Array([0, 0, 0, 0, 0]))
 /** @type {Map<number, Key>} */
 var pressedKeys = new Map()
 
