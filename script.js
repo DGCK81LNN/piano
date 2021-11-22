@@ -1,5 +1,5 @@
 /**
- * @typedef {{ osc: OscillatorNode, gain: GainNode, el: Element }} Key
+ * @typedef {{ oscNode: OscillatorNode, gainNode: GainNode, el: Element }} PressedKey
  */
 
 var svg = document.getElementById("svg")
@@ -12,7 +12,7 @@ setTimeout(forceRepaint, 0)
 /** @type {AudioContext} */
 var auCtx = new (window.AudioContext || window.webkitAudioContext)()
 var wav = auCtx.createPeriodicWave(new Float32Array([0, 1, 2, 3, 4]), new Float32Array([0, 0, 0, 0, 0]))
-/** @type {Map<number, Key>} */
+/** @type {Map<number, PressedKey>} */
 var pressedKeys = new Map()
 
 
